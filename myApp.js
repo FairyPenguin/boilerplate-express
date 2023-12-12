@@ -6,7 +6,7 @@ const absolutePathHTMl = __dirname + "/views/index.html";
 
 const absolutePathCSS = __dirname + "/public";
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("/public"));
 
 // send file response example
 app.get("/", (req, res) => {
