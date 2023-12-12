@@ -13,6 +13,9 @@ app.get("/", (req, res) => {
   res.sendFile(absolutePathHTMl);
 });
 
+app.get("/json", (req, res) => {
+  res.json({ message: "Hello json" });
+});
 //send string response example
 // app.get("/", (req, res) => {
 //   res.send("Hello Express");
