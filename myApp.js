@@ -7,14 +7,14 @@ const absolutePathHTMl = __dirname + "/views/index.html";
 
 const absolutePathCSS = __dirname + "/public";
 
-app.use("/public", express.static(__dirname + "/public"));
-
 // root-level middleware logger
 app.use((req, res, next) => {
   const responseMessage = `${req.method} ${req.path} - ${req.ip}`;
   res.send(responseMessage);
   next();
 });
+
+app.use("/public", express.static(__dirname + "/public"));
 
 // send file response example
 app.get("/", (req, res) => {
