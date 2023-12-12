@@ -8,11 +8,13 @@ const absolutePathHTMl = __dirname + "/views/index.html";
 const absolutePathCSS = __dirname + "/public";
 
 // root-level middleware logger
-app.use((req, res, next) => {
+app.use(function middleware(req, res, next)  {
   const responseMessage = `${req.method} ${req.path} - ${req.ip}`;
   res.send(responseMessage);
   next();
 });
+
+GET /json - 156.192.167.40
 
 app.use("/public", express.static(__dirname + "/public"));
 
