@@ -28,5 +28,6 @@ app.get("/json", (req, res) => {
 // });
 
 console.log("Hello World");
+console.log(process.env.MESSAGE_STYLE);
 
 module.exports = app;
