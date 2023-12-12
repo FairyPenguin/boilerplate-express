@@ -1,5 +1,6 @@
 let express = require("express");
 let app = express();
+require("dotenv").config();
 
 //set the absolut path using the __dirname global variable
 const absolutePathHTMl = __dirname + "/views/index.html";
@@ -13,8 +14,13 @@ app.get("/", (req, res) => {
   res.sendFile(absolutePathHTMl);
 });
 
+// json response to the get method on the /json route
 app.get("/json", (req, res) => {
-  res.json({ message: "Hello json" });
+  if (process.env.MESSAGE_STYLE === uppercase) {
+    res.json({ message: "HELLO JSON" });
+  } else {
+    res.json({ message: "Hello json" });
+  }
 });
 //send string response example
 // app.get("/", (req, res) => {
