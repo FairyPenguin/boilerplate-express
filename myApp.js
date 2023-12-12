@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 // json response to the get method on the /json route
 app.get("/json", (req, res) => {
-  if (process.env.MESSAGE_STYLE === uppercase) {
+  if (process.env.MESSAGE_STYLE === "uppercase") {
     res.json({ message: "HELLO JSON" });
   } else {
     res.json({ message: "Hello json" });
