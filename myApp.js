@@ -17,7 +17,7 @@ app.use(function middleware(req, res, next) {
 // request params
 
 app.get("/:word/echo", (req, res) => {
-  word = req.params.word;
+  const word = req.params.word;
 
   res.json({ echo: word });
 });
