@@ -14,16 +14,25 @@ app.use(function middleware(req, res, next) {
   next();
 });
 
-app.get(
-  "/now",
-  function chainedMiddleware(req, res, next) {
-    req.time = new Date().toString();
-    next();
-  },
-  (req, res) => {
-    res.json({ time: req.time });
-  }
-);
+// request params
+
+app.get("/:word/echo", (req, res) => {
+  word = req.params.word;
+
+  res.json({ echo: word });
+});
+
+//middleware chaining
+// app.get(
+//   "/now",
+//   function chainedMiddleware(req, res, next) {
+//     req.time = new Date().toString();
+//     next();
+//   },
+//   (req, res) => {
+//     res.json({ time: req.time });
+//   }
+// );
 
 app.use("/public", express.static(__dirname + "/public"));
 
