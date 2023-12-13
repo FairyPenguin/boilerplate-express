@@ -14,7 +14,15 @@ app.use(function middleware(req, res, next) {
   next();
 });
 
-// request params
+// request queries ==> [query parameters]
+
+app.get("/name", (req, res) => {
+  firstname = req.query.first;
+  lastname = req.query.last;
+  res.json({ name: `${firstname} ${lastname}` });
+});
+
+// request params ==> [route parameters]
 
 app.get("/:word/echo", (req, res) => {
   const { word } = req.params;
