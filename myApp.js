@@ -1,3 +1,4 @@
+const bodyParser = require("body-parser");
 let express = require("express");
 let app = express();
 require("dotenv").config();
@@ -6,6 +7,8 @@ require("dotenv").config();
 const absolutePathHTMl = __dirname + "/views/index.html";
 
 const absolutePathCSS = __dirname + "/public";
+
+app.use(bodyParser.urlencoded({extended:false}))
 
 // root-level middleware logger
 app.use(function middleware(req, res, next) {
@@ -16,11 +19,38 @@ app.use(function middleware(req, res, next) {
 
 // request queries ==> [query parameters]
 
-app.get("/name", (req, res) => {
-  firstname = req.query.first;
-  lastname = req.query.last;
-  res.json({ name: `${firstname} ${lastname}` });
-});
+// GET & POST methods chaining with app.route()
+
+app
+  .route("/name")
+  .get((req, res) => {
+    firstname = req.query.first;
+    lastname = req.query.last;
+    res.json({ name: `${firstname} ${lastname}` });
+  })
+  .post((req, res) => {
+    firstname = req.query.first;
+    lastname = req.query.last;
+    res.json({ name: `${firstname} ${lastname}` });
+  });
+
+// request queries ==> [query parameters]
+
+// GET
+
+// app.get("/name", (req, res) => {
+//   firstname = req.query.first;
+//   lastname = req.query.last;
+//   res.json({ name: `${firstname} ${lastname}` });
+// });
+
+// POST
+
+// app.post("/name", (req, res) => {
+//   firstname = req.query.first;
+//   lastname = req.query.last;
+//   res.json({ name: `${firstname} ${lastname}` });
+// });
 
 // request params ==> [route parameters]
 
