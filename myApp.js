@@ -8,7 +8,13 @@ const absolutePathHTMl = __dirname + "/views/index.html";
 
 const absolutePathCSS = __dirname + "/public";
 
-app.use(bodyParser.urlencoded({extended:false}))
+// CSS files
+app.use("/public", express.static(__dirname + "/public"));
+
+//body parser
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// POST handler
 
 // root-level middleware logger
 app.use(function middleware(req, res, next) {
@@ -29,8 +35,11 @@ app
     res.json({ name: `${firstname} ${lastname}` });
   })
   .post((req, res) => {
-    firstname = req.query.first;
-    lastname = req.query.last;
+    firstname = req.body.first;
+    lastname = req.body.last;
+    // res.json({ name: `${firstname} ${lastname}` });
+    const data = req.body;
+    console.log(data);
     res.json({ name: `${firstname} ${lastname}` });
   });
 
@@ -72,12 +81,10 @@ app.get("/:word/echo", (req, res) => {
 //   }
 // );
 
-app.use("/public", express.static(__dirname + "/public"));
-
 // send file response example
-// app.get("/", (req, res) => {
-//   res.sendFile(absolutePathHTMl);
-// });
+app.get("/", (req, res) => {
+  res.sendFile(absolutePathHTMl);
+});
 
 // json response to the get method on the /json route
 // app.get("/json", (req, res) => {
